@@ -1,0 +1,40 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Publish
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
+    - name: Install Poetry
+      run: |
+        sudo apt-get update
+        sudo apt-get install curl -y
+        curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+        echo "::add-path::${HOME}/.poetry/bin"
+    - name: Build and Publish PyPI
+      run: |
+        poetry publish \
+          --build \
+          --username ${{ secrets.pypi_username }} \
+          --password ${{ secrets.pypi_password }}
+#    - name: Build and Publish TestPyPI
+#      run: |
+#        poetry config repositories.testpypi https://test.pypi.org/legacy/
+#        poetry publish \
+#          --build \
+#          --repository testpypi \
+#          --username ${{ secrets.testpypi_username }} \
+#          --password ${{ secrets.testpypi_password }}

@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "callable-journal"
+version = "0.0.1"
+description = "Log message generator for callables argument and return values."
+authors = ["Nate Atkins <atkinsnw@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/nathan5280/ndl-tools"
+repository = "https://github.com/nathan5280/ndl-tools"
+keywords = ["api", "testing", "diff"]
+classifiers = [
+    "Operating System :: OS Independent",
+    "Topic :: System :: Logging",
+]
+include = [
+    "LICENSE"
+]
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.0.1"
+pytest-cov = "^2.10.1"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
