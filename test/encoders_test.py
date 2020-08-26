@@ -7,7 +7,15 @@ from pydantic import BaseModel
 from callable_journal.encoders import ObjectDictEncoder
 
 PRIMITIVE = Union[
-    bool, float, int, str, Iterable, Mapping, datetime.datetime, datetime.date, datetime.time,
+    bool,
+    float,
+    int,
+    str,
+    Iterable,
+    Mapping,
+    datetime.datetime,
+    datetime.date,
+    datetime.time,
 ]
 
 

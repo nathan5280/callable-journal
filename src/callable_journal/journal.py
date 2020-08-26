@@ -82,7 +82,9 @@ def journal(
         )
         try:
             results = func(*args, **kwargs)
-            results_data = ParamArgMapper.map_results(results, result_names=results_names)
+            results_data = ParamArgMapper.map_results(
+                results, result_names=results_names
+            )
             msg.results = results_data
             logger.info(msg="", extra={"journal_content": msg})
             return results

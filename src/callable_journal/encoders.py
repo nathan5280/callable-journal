@@ -42,6 +42,7 @@ class ObjectDictEncoder(DictEncoder):
     """
     Encoder for additional common object types and protocols that have a dict() method.
     """
+
     @classmethod
     def encode(cls, obj):
         try:

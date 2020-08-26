@@ -3,7 +3,7 @@ from typing import List
 from src.callable_journal.param_arg_mapper import ParamArgMapper
 
 
-def unbound_param_arg_map(p1, /, pkw1, pkw2="dpkw2", *args, kw1, kw2="dkw2", **kwargs):
+def unbound_param_arg_map(p1, pkw1, pkw2="dpkw2", *args, kw1, kw2="dkw2", **kwargs):
     return {
         "p1": p1,
         "pkw1": pkw1,
@@ -84,7 +84,9 @@ def test_copy_all():
 def test_copy_some():
     a = [1]
     b = [2]
-    mapped_args = ParamArgMapper.map_args(copy_fn, args=[a, b], kwargs={}, copy_args=["a"])
+    mapped_args = ParamArgMapper.map_args(
+        copy_fn, args=[a, b], kwargs={}, copy_args=["a"]
+    )
 
     a.append(10)
     b.append(10)

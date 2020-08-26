@@ -49,7 +49,9 @@ class ParamArgMapper:
 
     @classmethod
     def map_results(
-        cls, results: Union[Any, Tuple[Any]], result_names: Optional[Union[str, List[str]]] = None
+        cls,
+        results: Union[Any, Tuple[Any]],
+        result_names: Optional[Union[str, List[str]]] = None,
     ) -> Mapping:
         """
         Map results based on list of names.  Result names "_" are ignored and not
@@ -64,12 +66,16 @@ class ParamArgMapper:
 
         # Make sure the results and names are lists.
         results = results if isinstance(results, (list, tuple)) else [results]
-        result_names = result_names if isinstance(result_names, (list, tuple)) else [result_names]
+        result_names = (
+            result_names if isinstance(result_names, (list, tuple)) else [result_names]
+        )
         if len(result_names) != len(results):
             raise ResultNameMappingError(
                 f"Results names: {len(result_names)}, Results: {len(results)}."
             )
 
         # Map everything together and throw out the "_".
-        mapped_results = {n: r for n, r in zip(result_names, results) if n != cls.IGNORE}
+        mapped_results = {
+            n: r for n, r in zip(result_names, results) if n != cls.IGNORE
+        }
         return mapped_results

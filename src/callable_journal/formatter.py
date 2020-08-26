@@ -15,12 +15,20 @@ FORMAT_VERSION = "0.2.0"
 
 class FormatMode(Enum):
     """Configure the formatting mode."""
+
     json = "JSON"
     stringy = "STRINGY"
 
 
 class JournalFormatter(Formatter):
-    def __init__(self, tag: str, format_mode: str, *args, encoder: Optional[DictEncoder] = None, **kwargs):
+    def __init__(
+        self,
+        tag: str,
+        format_mode: str,
+        *args,
+        encoder: Optional[DictEncoder] = None,
+        **kwargs
+    ):
         self.tag = tag
         format_mode = FormatMode(format_mode)
         if format_mode == FormatMode.json:
