@@ -27,6 +27,7 @@ jobs:
         sudo apt-get install curl -y
         curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
         export PATH=$PATH:${HOME}/.poetry/bin
+        poetry config virtualenvs.create false
         echo "::add-path::${HOME}/.poetry/bin"
     - name: Install dependencies
       run: |
