@@ -1,3 +1,4 @@
+from inspect import getcallargs
 from typing import Iterable, Mapping, Callable, Optional
 
 
@@ -6,4 +7,4 @@ class ParamArgMapper:
     def map(
         cls, callable: Callable, args: Iterable, kwargs: Mapping, copy: Optional[bool] = False
     ) -> Mapping:
-        pass
+        return getcallargs(callable, *args, **kwargs)
