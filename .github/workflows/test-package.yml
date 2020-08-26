@@ -41,11 +41,12 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
+        export PYTHONPATH=src
+        mkdir coverage
         pwd
         ls -la .
         ls -la src
-        export PYTHONPATH=src
-        mkdir coverage
+        echo $PYTHONPATH
         pytest --cov=./ --cov-report=xml -sv
     - name: Upload coverage
       uses: codecov/codecov-action@v1
