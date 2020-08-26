@@ -1,6 +1,6 @@
 from typing import List
 
-from src.callable_journal.param_arg_mapper import ParamArgMapper
+from callable_journal.param_arg_mapper import ParamArgMapper
 
 
 def unbound_param_arg_map(p1, pkw1, pkw2="dpkw2", *args, kw1, kw2="dkw2", **kwargs):
