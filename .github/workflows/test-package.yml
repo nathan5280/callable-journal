@@ -54,4 +54,3 @@ jobs:
         flags: unittest
         env_vars: OS, PYTHON
         path_to_write_report: ./coverage/codecov_report.gz
-  
