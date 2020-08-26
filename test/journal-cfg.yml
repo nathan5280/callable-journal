@@ -1,0 +1,21 @@
+---
+version: 1
+disable_existing_loggers: false
+formatters:
+  journal-json:
+    (): callable_journal.formatter.JournalFormatter
+    tag: JOURNAL_MSG_JSON
+    format_mode: JSON
+handlers:
+  journal-json-console:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: journal-json
+    stream: ext://sys.stdout
+loggers:
+  journal:
+    level: INFO
+    handlers:
+      - journal-json-console
+    propagate: false
+...
