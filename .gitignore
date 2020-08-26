@@ -1,0 +1,7 @@
+.idea
+.data
+.coverage
+.python-version
+dist
+__pycache__
+coverage.xml
