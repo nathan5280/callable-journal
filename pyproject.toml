@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "callable-journal"
-version = "0.0.3"
+version = "0.0.5"
 description = "Log message generator for callables argument and return values."
 authors = ["Nate Atkins <atkinsnw@gmail.com>"]
 license = "MIT"
