@@ -5,7 +5,11 @@ formatters:
   journal-json:
     (): callable_journal.formatter.JournalFormatter
     tag: JOURNAL_MSG_JSON
-    format_mode: JSON
+    format_mode: json
+  journal-stringy:
+    (): callable_journal.formatter.JournalFormatter
+    tag: JOURNAL_MSG_STRINGY
+    format_mode: stringy
 handlers:
   journal-json-console:
     class: logging.StreamHandler
