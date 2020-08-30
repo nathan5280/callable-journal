@@ -93,7 +93,7 @@ class JournalFormatter(Formatter):
         self.encoder = encoder if encoder else ObjectDictEncoder
         super().__init__(*args, **kwargs)
 
-    def format_json(self, record: LogRecord) -> Dict:
+    def to_json(self, record: LogRecord) -> Dict:
         """
         Format the message as a pure JSON message.
 
@@ -101,28 +101,49 @@ class JournalFormatter(Formatter):
         :return: String representation of the context, arguments and results.
         """
 
+        content = self.encoder.encode(record.journal_content)
+
+        # Remove the context if none was specified.
+        if not content["context"]:
+            del content["context"]
+
+        # Remove the exception if there is no exception.
+        if not content["exception"]:
+            del content["exception"]
+        else:
+            # If there is an exception there are no results.
+            del content["results"]
+
         # record.journal_content is loaded onto the logging record from extras.
         msg = {
             "tag": self.tag,
-            "version": FORMAT_VERSION,
-            **self.encoder.encode(record.journal_content),
+            "format": FORMAT_VERSION,
+            **content,
         }
         return msg
 
-    def format_stringy(self, record) -> Dict:
+    def format_json(self, record) -> str:
+        msg = self.to_json(record)
+        return json.dumps(msg)
+
+    def format_stringy(self, record) -> str:
         """
         Format the message as a STRINGY JSON message.
 
         :param record: Logging record.
         :return: String representation of the context, arguments and results.
         """
-        msg = self.format_json(record)
+        msg = self.to_json(record)
         # Stringy the arguments, results and exceptions.
         for field in ("arguments", "results", "exception"):
-            msg[field] = json.dumps(msg[field])
-        return msg
+            try:
+                msg[field] = json.dumps(msg[field])
+            except KeyError:
+                pass
+        return json.dumps(msg)
 
     def format(self, record) -> str:
         """Format the context, arguments and results in the JSON or STRINGY format."""
-        return json.dumps(self.formatter(record))
-
+        msg = self.formatter(record)
+        record.msg = msg
+        return super().format(record)

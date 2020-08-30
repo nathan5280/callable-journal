@@ -1,7 +1,7 @@
 import pytest
 
 from callable_journal.exceptions import ResultNameMappingError
-from callable_journal.param_arg_mapper import ParamArgMapper
+from callable_journal.param_arg_mapper import ParamArgMapper, DROP_RESULT
 
 
 def test_single_name():
@@ -30,7 +30,7 @@ def test_all_mapped():
 
 def test_some_mapped():
     results = ("a", "b")
-    results_map = ParamArgMapper.map_results(results, ["a", ParamArgMapper.IGNORE])
+    results_map = ParamArgMapper.map_results(results, ["a", DROP_RESULT])
     assert results_map == {"a": "a"}
 
 

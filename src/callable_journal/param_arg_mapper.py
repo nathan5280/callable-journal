@@ -5,13 +5,26 @@ from typing import Iterable, Mapping, Callable, Optional, List, Union, Tuple, An
 from callable_journal.exceptions import ResultNameMappingError
 
 
+class CopyAllArgs:
+    """Sentry class to indicate that all arguments should be copied."""
+    pass
+
+
+COPY_ALL_ARGS = CopyAllArgs()
+
+
+class DropResult:
+    """Sentry class to indicate that a result should be dropped."""
+    pass
+
+
+DROP_RESULT = DropResult()
+
+
 class ParamArgMapper:
     """
     Map the argument values and parameters.
     """
-
-    COPY_ALL = ["*"]
-    IGNORE = "_"
 
     @staticmethod
     def to_iterable(value: Optional[Union[str, List[str]]] = None) -> List[str]:
@@ -27,7 +40,7 @@ class ParamArgMapper:
         callable: Callable,
         args: Iterable,
         kwargs: Mapping,
-        copy_args: Optional[Union[str, List[str]]] = None,
+        copy_args: Optional[Union[str, List[str], CopyAllArgs]] = None,
         drop_args: Optional[Union[str, List[str]]] = None,
     ) -> Mapping:
         """
@@ -54,7 +67,7 @@ class ParamArgMapper:
                 pass
 
         if copy_args:
-            if "*" in copy_args:
+            if copy_args == [COPY_ALL_ARGS]:
                 copy_args = arg_map.keys()
             for k in copy_args:
                 arg_map[k] = copy.deepcopy(arg_map[k])
@@ -66,7 +79,9 @@ class ParamArgMapper:
 
     @classmethod
     def map_results(
-        cls, results: Union[Any, Tuple[Any]], result_names: Optional[Union[str, List[str]]] = None,
+        cls,
+        results: Union[Any, Tuple[Any]],
+        result_names: Optional[Union[str, List[str], DropResult]] = None,
     ) -> Mapping:
         """
         Map results based on list of names.  Result names "_" are ignored and not
@@ -88,5 +103,5 @@ class ParamArgMapper:
             )
 
         # Map everything together and throw out the "_".
-        mapped_results = {n: r for n, r in zip(result_names, results) if n != cls.IGNORE}
+        mapped_results = {n: r for n, r in zip(result_names, results) if n != DROP_RESULT}
         return mapped_results

@@ -22,5 +22,3 @@ class ExceptionMsg(BaseModel):
         exc_file = exc_frame.filename
         exc_line = exc_frame.lineno
         return ExceptionMsg(type=exc_type, msg=exc_msg, file=exc_file, line=exc_line)
-
-

@@ -120,6 +120,14 @@ version = "0.4.3"
 
 [[package]]
 category = "dev"
+description = "Tools for sorting and diffing nested dictionaries and lists."
+name = "ndl-tools"
+optional = false
+python-versions = ">=3.7,<4.0"
+version = "0.0.14"
+
+[[package]]
+category = "dev"
 description = "Core utilities for Python packages"
 name = "packaging"
 optional = false
@@ -295,7 +303,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "d1840c6b26ebf33f1cb5abd7cabd1fc528d3059cfdad7f05896d7067f0492e47"
+content-hash = "99ed20fd1148ec9f83fc1ad2c77ac0a9e13c349bf7b9b6dfee51d3eb8319d0be"
 lock-version = "1.0"
 python-versions = "^3.7"
 
@@ -375,6 +383,10 @@ more-itertools = [
 mypy-extensions = [
     {file = "mypy_extensions-0.4.3-py2.py3-none-any.whl", hash = "sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d"},
     {file = "mypy_extensions-0.4.3.tar.gz", hash = "sha256:2d82818f5bb3e369420cb3c4060a7970edba416647068eb4c5343488a6c604a8"},
+]
+ndl-tools = [
+    {file = "ndl-tools-0.0.14.tar.gz", hash = "sha256:c2aed94a27f94fdfd0c7fecd2433040327b3d909b751b1f519ac62b3332d0c2d"},
+    {file = "ndl_tools-0.0.14-py3-none-any.whl", hash = "sha256:83c60e43e7ca6c30ed326f90624c2dcdfd946ca18d907987f451bf1a18098769"},
 ]
 packaging = [
     {file = "packaging-20.4-py2.py3-none-any.whl", hash = "sha256:998416ba6962ae7fbd6596850b80e17859a5753ba17c32284f67bfff33784181"},
