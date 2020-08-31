@@ -31,7 +31,7 @@ jobs:
         echo "::add-path::${HOME}/.poetry/bin"
     - name: Install dependencies
       run: |
-        poetry install
+        poetry install --no-root
     - name: Lint with flake8
       run: |
         poetry add --dev flake8
