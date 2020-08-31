@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 import pytest
-from ndl_tools import Differ
+from ndl_tools import Differ, PathNormalizer, EndsWithSelector
 
 from callable_journal.journal import journal, journal_init
 
@@ -77,7 +77,9 @@ def test_exception(capsys):
     }
 
     msg = json.loads(msg)
-    result = Differ().diff(expected, msg)
+    selector = EndsWithSelector("exception/file")
+    normalizer = PathNormalizer(num_components=3, selectors=selector)
+    result = Differ().diff(expected, msg, normalizers=normalizer)
     if not result:
         print(result.support)
         assert False

@@ -63,6 +63,6 @@ def basic(a: int, b: List[int]) -> Tuple[int, List[int]]:
 The callable journal decorator does this and a bit more.  It works great on API endpoints 
 where you want a nice record of what the endpoint was called with and what it returned.  By 
 connecting into the standard library logging package it is easy to format and direct 
-journal message to you favorite sink.  Frequently, this is stdout on a containerized cloud 
+journal message to your favorite sink.  Frequently, this is stdout on a containerized cloud 
 infrastructure where some sort of filter takes over from there to route you log messages to
 your logging infrastructure. 
