@@ -6,10 +6,7 @@ formatters:
     (): callable_journal.formatter.JournalFormatter
     tag: JOURNAL_MSG_JSON
     format_mode: json
-  journal-stringy:
-    (): callable_journal.formatter.JournalFormatter
-    tag: JOURNAL_MSG_STRINGY
-    format_mode: stringy
+    format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 handlers:
   journal-json-console:
     class: logging.StreamHandler

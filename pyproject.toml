@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "callable-journal"
-version = "0.0.5"
-description = "Log message generator for callables argument and return values."
+version = "0.0.7"
+description = "Log message generator for a callable's argument and return values."
 authors = ["Nate Atkins <atkinsnw@gmail.com>"]
 license = "MIT"
 readme = "README.md"
@@ -20,6 +20,7 @@ python = "^3.7"
 pyyaml = "^5.3.1"
 toolz = "^0.10.0"
 pydantic = "^1.6.1"
+ndl-tools = "^0.0.18"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.0.1"

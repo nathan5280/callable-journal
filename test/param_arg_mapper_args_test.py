@@ -1,6 +1,6 @@
 from typing import List
 
-from callable_journal.param_arg_mapper import ParamArgMapper
+from callable_journal.param_arg_mapper import ParamArgMapper, COPY_ALL_ARGS
 
 
 def unbound_param_arg_map(p1, pkw1, pkw2="dpkw2", *args, kw1, kw2="dkw2", **kwargs):
@@ -71,7 +71,7 @@ def test_copy_all():
     a = [1]
     b = [2]
     mapped_args = ParamArgMapper.map_args(
-        copy_fn, args=[a, b], kwargs={}, copy_args=ParamArgMapper.COPY_ALL
+        copy_fn, args=[a, b], kwargs={}, copy_args=COPY_ALL_ARGS
     )
 
     a.append(10)
@@ -93,3 +93,13 @@ def test_copy_some():
 
     assert mapped_args["a"] == [1]
     assert mapped_args["b"] == [2, 10]
+
+
+def test_drop_arg():
+    a = [1]
+    b = [2]
+    mapped_args = ParamArgMapper.map_args(copy_fn, args=[a, b], kwargs={}, drop_args="a")
+    assert ["b"] == list(mapped_args.keys())
+
+    mapped_args = ParamArgMapper.map_args(copy_fn, args=[a, b], kwargs={}, drop_args=["a", "b"])
+    assert [] == list(mapped_args.keys())
