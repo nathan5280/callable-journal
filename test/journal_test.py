@@ -71,7 +71,7 @@ def test_exception(capsys):
         "exception": {
             "type": "ZeroDivisionError",
             "msg": "division by zero",
-            "file": "/home/nate/projects/callable-journal/test/journal_test.py",
+            "file": "/home/some_user/projects/callable-journal/test/journal_test.py",
             "line": "50",
         },
     }
@@ -79,7 +79,8 @@ def test_exception(capsys):
     msg = json.loads(msg)
     selector = EndsWithSelector("exception/file")
     normalizer = PathNormalizer(num_components=3, selectors=selector)
-    result = Differ().diff(expected, msg, normalizers=normalizer)
+    result = Differ().diff(expected, msg, normalizers=normalizer, max_col_width=50)
+    print(result.support)
     if not result:
         print(result.support)
         assert False

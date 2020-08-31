@@ -9,8 +9,5 @@ def test_exception_msg():
 
         assert msg.type == "ZeroDivisionError"
         assert msg.msg == "division by zero"
-        assert (
-            msg.file
-            == "/home/nate/projects/callable-journal/test/exception_msg_test.py"
-        )
+        assert msg.file.endswith("callable-journal/test/exception_msg_test.py")
         assert msg.line == "6"

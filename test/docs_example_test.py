@@ -221,7 +221,7 @@ def run_exception():
         "exception": {
             "type": "ZeroDivisionError",
             "msg": "division by zero",
-            "file": "/home/nate/projects/callable-journal/test/docs_example_test.py",
+            "file": "/home/some_user/projects/callable-journal/test/docs_example_test.py",
             "line": "170",
         },
     }
