@@ -54,7 +54,7 @@ Wouldn't it be nice if you could just do this!
 from typing import List, Tuple
 from callable_journal import journal
 
-@journal()
+@journal
 def basic(a: int, b: List[int]) -> Tuple[int, List[int]]:
     multiplied = [a * b_item for b_item in b]
     return sum(multiplied), multiplied
@@ -178,7 +178,7 @@ from pathlib import Path
 from typing import List, Tuple
 from callable_journal import journal, journal_init
 
-@journal()
+@journal
 def add_context(a: int, b: List[int]) -> Tuple[int, List[int]]:
     multiplied = [a * b_item for b_item in b]
     return sum(multiplied), multiplied
@@ -196,9 +196,9 @@ def run_add_context():
     "tag": "JOURNAL_MSG_JSON",
     "format": "0.2.0",
     "objective": "add_context",
-    "context": {"app_version": "0.1.0"},
     "arguments": {"a": 2, "b": [1, 2]},
-    "results": [6, [2, 4]]
+    "results": [6, [2, 4]],
+    "app_version": "0.1.0"
 }
 ```
 
@@ -328,7 +328,7 @@ Log Message:
         "tag": "JOURNAL_MSG_JSON",
         "format": "0.2.0",
         "objective": "log_format",
-        "context": {"app_version": "0.1.0"},
+        app_version": "0.1.0",
         "arguments": {"a": 2, "b": [1, 2]},
         "results": [6, [2, 4]],
     }

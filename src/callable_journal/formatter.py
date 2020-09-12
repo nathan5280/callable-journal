@@ -103,9 +103,13 @@ class JournalFormatter(Formatter):
 
         content = self.encoder.encode(record.journal_content)
 
-        # Remove the context if none was specified.
-        if not content["context"]:
-            del content["context"]
+        # Unwrap the context into top level elements.  If context should
+        # be contained in a single conext element then wrap the context
+        # in {"context": {...}} when it is passed to journal_init.
+        context = content["context"] or dict()
+        del content["context"]
+        for k, v in context.items():
+            content[k] = v
 
         # Remove the exception if there is no exception.
         if not content["exception"]:
