@@ -7,8 +7,10 @@ from ndl_tools import Differ, PathNormalizer, EndsWithSelector
 from callable_journal.journal import journal, journal_init
 
 context = dict(
-    service_ctx=dict(name="Test Service", version="0.1.0"),
-    implementation_ctx=dict(name="Simple Model", version="0.1.0"),
+    context=dict(
+        service_ctx=dict(name="Test Service", version="0.1.0"),
+        implementation_ctx=dict(name="Simple Model", version="0.1.0"),
+    )
 )
 JOURNAL_CFG_FPATH = Path(__file__).parent / "journal-cfg.yml"
 
@@ -72,7 +74,7 @@ def test_exception(capsys):
             "type": "ZeroDivisionError",
             "msg": "division by zero",
             "file": "/home/some_user/projects/callable-journal/test/journal_test.py",
-            "line": "50",
+            "line": "52",
         },
     }
 

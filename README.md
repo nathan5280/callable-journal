@@ -196,9 +196,9 @@ def run_add_context():
     "tag": "JOURNAL_MSG_JSON",
     "format": "0.2.0",
     "objective": "add_context",
-    "context": {"app_version": "0.1.0"},
     "arguments": {"a": 2, "b": [1, 2]},
-    "results": [6, [2, 4]]
+    "results": [6, [2, 4]],
+    "app_version": "0.1.0"
 }
 ```
 
@@ -328,7 +328,7 @@ Log Message:
         "tag": "JOURNAL_MSG_JSON",
         "format": "0.2.0",
         "objective": "log_format",
-        "context": {"app_version": "0.1.0"},
+        app_version": "0.1.0",
         "arguments": {"a": 2, "b": [1, 2]},
         "results": [6, [2, 4]],
     }
