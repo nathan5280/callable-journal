@@ -39,7 +39,7 @@ def motivation_with_logging(a: int, b: List[int]) -> Tuple[int, List[int]]:
     return sum(multiplied), multiplied
 
 
-@journal()
+@journal
 def basic(a: int, b: List[int]) -> Tuple[int, List[int]]:
     multiplied = [a * b_item for b_item in b]
     return sum(multiplied), multiplied
@@ -171,7 +171,7 @@ def test_drop_args(capsys):
     # print(captured[0])
 
 
-@journal()
+@journal
 def add_context(a: int, b: List[int]) -> Tuple[int, List[int]]:
     multiplied = [a * b_item for b_item in b]
     return sum(multiplied), multiplied
@@ -233,7 +233,7 @@ def test_exception(capsys):
     # print(captured[0])
 
 
-@journal()
+@journal
 def log_format(a: int, b: List[int]) -> Tuple[int, List[int]]:
     multiplied = [a * b_item for b_item in b]
     return sum(multiplied), multiplied

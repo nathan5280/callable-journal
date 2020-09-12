@@ -4,7 +4,7 @@ Public interface to the journal decorator.
 import functools
 import logging.config
 from pathlib import Path
-from typing import Any, List, Optional, Mapping, Union
+from typing import Any, List, Optional, Mapping, Union, Callable
 
 import yaml
 from pydantic.main import BaseModel
@@ -53,7 +53,7 @@ def journal_init(logging_cfg_fpath: Path, context: Optional[ANY_JSON_SERIALIZABL
 
 @curry
 def journal(
-    callable,
+    callable: Callable,
     *,
     objective: Optional[str] = None,
     result_names: Optional[Union[str, List[str]]] = None,
